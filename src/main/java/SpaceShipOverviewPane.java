@@ -4,7 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 
 public class SpaceShipOverviewPane extends VBox {
-    private Button button = null;
+    private ButtonWithClickAudio button = null;
     private Label label = null;
 
     public SpaceShipOverviewPane() {
@@ -15,6 +15,7 @@ public class SpaceShipOverviewPane extends VBox {
         this.setMinHeight(400.0d);
         this.setMinWidth(600.0d);
     }
+
 
     private Label getLabel(){
         if (label == null)
@@ -28,8 +29,7 @@ public class SpaceShipOverviewPane extends VBox {
     private Button getButton(){
         if (button == null)
         {
-            button = new Button("Press this button to write stuff in console");
-            button.setOnAction(e -> System.out.println("Button CLICKED!!! "));
+            button = new ButtonWithClickAudio("Press this button to write stuff in console");
         }
         return button;
     }
