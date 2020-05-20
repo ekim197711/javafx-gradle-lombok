@@ -1,5 +1,8 @@
+package spaceshipapplication;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
+import spaceshipapplication.overview.SpaceshipOverviewScene;
 
 public class SpaceShipFXApplication extends Application {
 
