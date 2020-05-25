@@ -1,18 +1,19 @@
 package spaceshipapplication.overview;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
+import spaceshipapplication.model.DataHandler;
+import spaceshipapplication.sidepanel.CreateAndDeletePanel;
+import spaceshipapplication.sidepanel.CreateSpaceShipEventHandler;
+import spaceshipapplication.sidepanel.DeleteSpaceShipEventHandler;
 
 public class SpaceShipOverviewPane extends BorderPane {
     private Label label = null;
     private SpaceShipTableView spaceShipTableView = null;
-    private ObservableList<SpaceShip> spaceShips = null;
 
+    private CreateAndDeletePanel createAndDeletePanel = null;
     public SpaceShipOverviewPane() {
         this.setPadding(new Insets(10));
         initPane();
@@ -23,28 +24,18 @@ public class SpaceShipOverviewPane extends BorderPane {
         this.setMinWidth(600.0d);
         this.setTop(getLabel());
         this.setCenter(getSpaceShipTableView());
+        this.setLeft(getCreateAndDeletePanel());
 
     }
 
     private SpaceShipTableView getSpaceShipTableView(){
         if (spaceShipTableView == null){
-            spaceShipTableView = new SpaceShipTableView(getSpaceShips());
+            spaceShipTableView = new SpaceShipTableView(DataHandler.INSTANCE.gimmeAllSpaceShips());
         }
         return spaceShipTableView;
     }
 
-    private ObservableList getSpaceShips() {
-        if (spaceShips == null){
-            spaceShips = FXCollections.observableArrayList();
-            spaceShips.addAll(
-                    new SpaceShip("Round1", "Mike", 99.9d),
-                    new SpaceShip("Round2", "Jane", 65.2d),
-                    new SpaceShip("Pyramid1", "Jan", 29.3d),
-                    new SpaceShip("Pyramid2", "Susan", 20.1d)
-                    );
-        }
-        return spaceShips;
-    }
+
 
     private Label getLabel(){
         if (label == null)
@@ -55,5 +46,14 @@ public class SpaceShipOverviewPane extends BorderPane {
             label.setOnMouseClicked(e -> System.out.println("Label CLICKED!!! " + e.getButton() ));
         }
         return label;
+    }
+
+    private CreateAndDeletePanel getCreateAndDeletePanel() {
+        if (createAndDeletePanel == null ){
+            createAndDeletePanel = new CreateAndDeletePanel(
+                    new CreateSpaceShipEventHandler(),
+                    new DeleteSpaceShipEventHandler(spaceShipTableView));
+        }
+        return createAndDeletePanel;
     }
 }

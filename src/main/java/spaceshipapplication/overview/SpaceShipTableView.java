@@ -4,6 +4,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import spaceshipapplication.model.SpaceShip;
+
 public class SpaceShipTableView extends TableView {
     public SpaceShipTableView() {
         initTable();

@@ -1,4 +1,4 @@
-package spaceshipapplication.overview;
+package spaceshipapplication.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
