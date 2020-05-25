@@ -1,5 +1,7 @@
 plugins {
+    id 'application'
     id 'java'
+    id 'org.openjfx.javafxplugin' version '0.0.8'
 }
 
 group 'org.example'
@@ -8,7 +10,11 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-
+mainClassName="spaceshipapplication.SpaceShipFXApplication"
+javafx {
+    version = "14"
+    modules = [ 'javafx.controls', 'javafx.media', 'javafx.fxml' ]
+}
 dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.12'
     annotationProcessor 'org.projectlombok:lombok:1.18.12'
