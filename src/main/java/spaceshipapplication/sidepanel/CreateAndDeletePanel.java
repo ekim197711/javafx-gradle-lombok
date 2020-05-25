@@ -1,19 +1,20 @@
 package spaceshipapplication.sidepanel;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import spaceshipapplication.CustomEvent;
 
 
 public class CreateAndDeletePanel extends VBox {
     private Button newSpaceship = null;
     private Button deleteSpaceship = null;
-    private final CreateSpaceShipEventHandler createSpaceShipEventHandler;
     private final DeleteSpaceShipEventHandler deleteSpaceShipEventHandler;
 
-    public CreateAndDeletePanel(CreateSpaceShipEventHandler createSpaceShipEventHandler,
+    public CreateAndDeletePanel(
                                 DeleteSpaceShipEventHandler deleteSpaceShipEventHandler) {
-        this.createSpaceShipEventHandler = createSpaceShipEventHandler;
         this.deleteSpaceShipEventHandler = deleteSpaceShipEventHandler;
         initStuff();
     }
@@ -29,7 +30,9 @@ public class CreateAndDeletePanel extends VBox {
     public Button getNewSpaceship() {
         if (newSpaceship == null){
             newSpaceship = new Button("Create new spaceship");
-            newSpaceship.setOnAction(createSpaceShipEventHandler);
+            newSpaceship.setOnAction((e) ->{
+                this.fireEvent(new CustomEvent(CustomEvent.SWAP_TO_CREATE));
+            });
         }
         return newSpaceship;
     }

@@ -6,13 +6,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Font;
 import spaceshipapplication.model.DataHandler;
 import spaceshipapplication.sidepanel.CreateAndDeletePanel;
-import spaceshipapplication.sidepanel.CreateSpaceShipEventHandler;
 import spaceshipapplication.sidepanel.DeleteSpaceShipEventHandler;
 
 public class SpaceShipOverviewPane extends BorderPane {
     private Label label = null;
     private SpaceShipTableView spaceShipTableView = null;
-
     private CreateAndDeletePanel createAndDeletePanel = null;
     public SpaceShipOverviewPane() {
         this.setPadding(new Insets(10));
@@ -51,9 +49,12 @@ public class SpaceShipOverviewPane extends BorderPane {
     private CreateAndDeletePanel getCreateAndDeletePanel() {
         if (createAndDeletePanel == null ){
             createAndDeletePanel = new CreateAndDeletePanel(
-                    new CreateSpaceShipEventHandler(),
                     new DeleteSpaceShipEventHandler(spaceShipTableView));
         }
         return createAndDeletePanel;
+    }
+
+    public void refreshData() {
+        this.getSpaceShipTableView().setItems(DataHandler.INSTANCE.gimmeAllSpaceShips());
     }
 }
